@@ -5,25 +5,28 @@ Entre 12,571 y 50,270   20%
 Entre 50,271 y 125,140  40%
 Over 125,141            45%
 */
-//import { lcm } from './utility.js'; // Add the name of the fucntion created
+
+import { bandSalary } from './utility.js';
 import inquirer from 'inquirer';
 
-const validateNumber = input => {
-  if (input >= 1) {
+const validateNumber = salaryInput => {
+  if (salaryInput >= 1) {
     return true;
   } else {
     return 'Error. Both numbers have to be greater than or equal to 0.';
   }
 };
 
-let firstInput = await inquirer.prompt([
+let salaryInput = await inquirer.prompt([
   {
     type: 'number',
     name: 'number',
-    message:
-      'Enter your income before tax:',
+    message: 'Enter your income before tax:',
     validate: validateNumber
   }
 ]);
 
-console.log("firsInput is:", firstInput);
+
+const result = bandSalary(salaryInput.number);
+
+console.log('The income tax of £', salaryInput.number, 'is: £', result);
